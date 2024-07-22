@@ -22,7 +22,7 @@
     @finishFailed="onFinishFailed"
   >
     <a-form-item
-      label="Viec can lam"
+      label="Việc cần làm"
       name="username"
       :rules="[{ required: true, message: 'Please input your username!' }]"
     >
@@ -34,15 +34,16 @@
       name="password"
       :rules="[{ required: true, message: 'Please input your password!' }]"
     >
-      <a-input-password v-model:value="formState.password" />
+      <a-input v-model:value="formState.password" />
     </a-form-item>
-    <a-form-item
-      label="type"
-      name="rr"
+       <a-form-item
+      label="loại"
+      name="password"
       :rules="[{ required: true, message: 'Please input your password!' }]"
     >
-      <a-input-password v-model:value="formState.password" />
+      <a-input v-model:value="formState.password" />
     </a-form-item>
+
 
    
 
@@ -67,7 +68,7 @@ const onSelect = (value:Dayjs) => {
   value.value = value;
 
   console.log('value', value)
-  showDrawer()
+  // showDrawer()
 
 };
 // end calendar
