@@ -1,6 +1,6 @@
 <template>
   <main>
-    <a-calendar :value="date" @panelChange="onPanelChange" @select="onSelect" />
+    <a-calendar @panelChange="onPanelChange" @select="onSelect" @change='rrr' />
      <a-drawer
      :width="720"
       v-model:open="open"
@@ -65,9 +65,9 @@ const onPanelChange = (value:Dayjs, mode:string) => {
  
 };
 const onSelect = (value:Dayjs) => {
-  value.value = value;
+  // value.value = value;
 
-  console.log('value', value)
+  // console.log('value', value)
   // showDrawer()
 
 };
@@ -80,6 +80,9 @@ const afterOpenChange = bool => {
 const showDrawer = () => {
   open.value = true;
 };
+const rrr = () => {
+  console.log('444444')
+}
 // end drawer
 // form
 const formState = reactive({
