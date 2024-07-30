@@ -13,6 +13,8 @@
     @after-open-change="afterOpenChange"
   >
     <a-form
+    :form="form"
+     @submit="handleSubmit"
     :model="formState"
     name="basic"
     :label-col="{ span: 8 }"
@@ -94,4 +96,7 @@ const onFinishFailed = errorInfo => {
   console.log('Failed:', errorInfo);
 };
 // end form
+const handleSubmit = () => {
+  console.log('444')
+}
 </script>
