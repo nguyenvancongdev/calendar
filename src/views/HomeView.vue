@@ -94,6 +94,10 @@ const showDrawer = () => {
   open.value = true;
 };
 
+
+// end drawer
+// form
+// form
 const resetForm = () => {
     formState.username = '';
     formState.password = '';
@@ -104,9 +108,6 @@ const initForm = (value) => {
     formState.password = value.password;
     formState.remember = value.remember;
 }
-
-// end drawer
-// form
 const formState = reactive({
   username: '',
   password: '',
