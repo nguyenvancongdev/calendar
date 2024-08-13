@@ -94,7 +94,7 @@ const mokeData = ref([{
 }])
 const getListData = (value: Dayjs) => {
   let startDay = value.startOf('day').valueOf()
-  let data = mokeData.find(item => item.milliSeconds === startDay )
+  let data = mokeData.value.find(item => item.milliSeconds === startDay )
   return {}
 }
 // end calendar
