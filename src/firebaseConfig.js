@@ -3,13 +3,13 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID"
+  apiKey: "AIzaSyDFYmsztLtrVrm3nHVgj96MfK_gwqu0d34",
+  authDomain: "vuejs-demo-d773e.firebaseapp.com",
+  projectId: "vuejs-demo-d773e",
+  storageBucket: "vuejs-demo-d773e.appspot.com",
+  messagingSenderId: "684138343077",
+  appId: "1:684138343077:web:89db6beb17b16393f8fb4c",
+  measurementId: "G-LN43WPS0K7"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -18,3 +18,4 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 export { db, auth };
+// ấn vào cài đặt ứng dụng sẽ thấy 

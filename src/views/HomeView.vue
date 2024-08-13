@@ -1,6 +1,15 @@
 <template>
   <main>
-    <a-calendar @panelChange="onPanelChange" @select="onSelect"  />
+    <a-calendar @panelChange="onPanelChange" @select="onSelect">
+      <template #dateCellRender="{ current }">
+      <ul class="events">
+        <li>
+         test
+        </li>
+      </ul>
+    </template>
+    
+    </a-calendar>
      <a-drawer
      :width="720"
       v-model:open="open"
@@ -73,6 +82,17 @@ const onSelect = (date, { source }) => {
      showDrawer()
     }
 };
+const mokeData = ref([{
+  name: 'lịch',
+  type: 'loại',
+  progress: 'todo',
+  milliSeconds: '...', // chuyển thành miligiay cho dong bo
+}])
+const getListData = (value: Dayjs) => {
+  let startDay = value.startOf('day').valueOf()
+  let data = mokeData.find(item => item.milliSeconds === startDay )
+  return {}
+}
 // end calendar
 // drawer
 const open = ref(false);
@@ -119,3 +139,12 @@ const onFinish = values => {
 };
 
 </script>
+<!-- // milliSeconds -->
+<!-- // listTodo:
+[{
+   name: 'lịch',
+   type: 'loại',
+   progress: 'todo',
+}]
+
+ -->
