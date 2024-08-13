@@ -14,14 +14,12 @@
   >
     <a-form
     :form="form"
-     @submit="handleSubmit"
     :model="formState"
     name="basic"
     :label-col="{ span: 8 }"
     :wrapper-col="{ span: 16 }"
     autocomplete="off"
     @finish="onFinish"
-    @finishFailed="onFinishFailed"
   >
     <a-form-item
       label="Việc cần làm"
@@ -64,23 +62,48 @@ import { reactive } from 'vue';
 const date = ref<Dayjs>()
 const onPanelChange = (value:Dayjs, mode:string) => {
   console.log(value, mode);
+  console.log('day là tính năng log')
+  // mình sẽ call api tại đây
+  // chuyển datejs thành 
+
  
 };
 const onSelect = (date, { source }) => {
-  console.log('44',source)
     if (source === 'date') {
      showDrawer()
     }
-  };
+};
 // end calendar
 // drawer
 const open = ref(false);
 const afterOpenChange = bool => {
   console.log('open', bool);
+  if (bool === false){
+    resetForm()
+  }
 };
+const mode = ref('view');
 const showDrawer = () => {
+  // resetForm
+  let valueForm = {
+    username : 'test',
+    password : 'test',
+    remember : false,
+  }
+  initForm(valueForm);
   open.value = true;
 };
+
+const resetForm = () => {
+    formState.username = '';
+    formState.password = '';
+    formState.remember = false;
+}
+const initForm = (value) => {
+    formState.username = value.username;
+    formState.password = value.password;
+    formState.remember = value.remember;
+}
 
 // end drawer
 // form
@@ -91,12 +114,7 @@ const formState = reactive({
 });
 const onFinish = values => {
   console.log('Success:', values);
+  // call api tạo lịch
 };
-const onFinishFailed = errorInfo => {
-  console.log('Failed:', errorInfo);
-};
-// end form
-const handleSubmit = () => {
-  console.log('444')
-}
+
 </script>
