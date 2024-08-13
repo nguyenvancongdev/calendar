@@ -32,26 +32,30 @@
   >
     <a-form-item
       label="Việc cần làm"
-      name="username"
-      :rules="[{ required: true, message: 'Please input your username!' }]"
+      name="name"
+      :rules="[{ required: true, message: 'Cần nhập việc cần làm' }]"
     >
-      <a-input v-model:value="formState.username" />
+      <a-input v-model:value="formState.name" />
     </a-form-item>
 
     <a-form-item
-      label="loại"
-      name="password"
-      :rules="[{ required: true, message: 'Please input your password!' }]"
+      label="Tiến độ"
+      name="progress"
+      :rules="[{ required: true, message: 'Lựa chọn tiến độ' }]"
     >
-      <a-input v-model:value="formState.password" />
-    </a-form-item>
-       <a-form-item
-      label="loại"
-      name="password"
-      :rules="[{ required: true, message: 'Please input your password!' }]"
+       <a-select
+      ref="select"
+      v-model:value="formState.progress"
+     
+      @focus="focus"
+      @change="handleChange"
     >
-      <a-input v-model:value="formState.password" />
+      <a-select-option value="todo">Chưa triển khai</a-select-option>
+      <a-select-option value="inProgress">Đang tiến hành</a-select-option>
+      <a-select-option value="done">Hoàn thành</a-select-option>
+    </a-select>
     </a-form-item>
+
 
 
    
@@ -106,9 +110,8 @@ const mode = ref('view');
 const showDrawer = () => {
   // resetForm
   let valueForm = {
-    username : 'test',
-    password : 'test',
-    remember : false,
+    name : 'test',
+    progress : 'todo',
   }
   initForm(valueForm);
   open.value = true;
@@ -119,19 +122,16 @@ const showDrawer = () => {
 // form
 // form
 const resetForm = () => {
-    formState.username = '';
-    formState.password = '';
-    formState.remember = false;
+    formState.name = '';
+    formState.progress = 'todo';
 }
 const initForm = (value) => {
-    formState.username = value.username;
-    formState.password = value.password;
-    formState.remember = value.remember;
+    formState.name = value.name;
+    formState.progress = value.progress;
 }
 const formState = reactive({
-  username: '',
-  password: '',
-  remember: true,
+  name: '',
+  progress: '',
 });
 const onFinish = values => {
   console.log('Success:', values);
