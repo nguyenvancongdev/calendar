@@ -1,5 +1,5 @@
 import { db } from '@firebaseConfig';
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, setDoc, query, where, orderBy, limit   } from 'firebase/firestore';
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, setDoc, query, where, orderBy, limit, FieldPath   } from 'firebase/firestore';
 
 const getAllData = async () => {
     const querySnapshot = await getDocs(collection(db, 'users'));
@@ -36,10 +36,10 @@ try {
 }
 
 // xử dụng set trong trường hợp muốn tạo ID riêng
-const setUser = async (user) => {
-    let {id, ...dataUser} = user
+export const setTodo = async (todo) => {
+    let {id, ...dataUser} = todo
     try {
-        const userRef = doc(db, 'users', id);
+        const userRef = doc(db, 'todo', id);
 
         setDoc(userRef, dataUser, { merge: true })
     }
@@ -82,3 +82,20 @@ const q = query(
     orderBy('age', 'asc'), // Sắp xếp theo tuổi tăng dần
     limit(10) // Giới hạn 10 kết quả
   );
+// truy vấn theo ID
+const getPageSize = async (pageSize) => {
+const lastDocumentId = 'yourLastDocumentId';
+
+// Truy vấn các tài liệu tiếp theo
+    const q = query(
+        collection(db, 'users'),
+        orderBy(FieldPath.documentId()), // Sắp xếp theo ID tài liệu
+        startAfter(lastDocumentId), // Bắt đầu sau ID của tài liệu cuối cùng
+        limit(pageSize) // Giới hạn số lượng tài liệu trả về
+        );
+        const querySnapshot = await getDocs(collection(db, 'users'));
+    const mapData =  querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return mapData
+    
+
+}
