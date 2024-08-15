@@ -2,7 +2,7 @@
   <main>
     <a-calendar @panelChange="onPanelChange" @select="onSelect">
       <template #dateCellRender="{ current }">
-      <ul class="events">
+      <ul  class="events">
         <li>
          test
         </li>
@@ -22,7 +22,6 @@
     @after-open-change="afterOpenChange"
   >
     <a-form
-    :form="form"
     :model="formState"
     name="basic"
     :label-col="{ span: 8 }"
@@ -46,9 +45,6 @@
        <a-select
       ref="select"
       v-model:value="formState.progress"
-     
-      @focus="focus"
-      @change="handleChange"
     >
       <a-select-option value="todo">Chưa triển khai</a-select-option>
       <a-select-option value="inProgress">Đang tiến hành</a-select-option>
@@ -90,12 +86,12 @@ const mokeData = ref([{
   name: 'lịch',
   type: 'loại',
   progress: 'todo',
-  milliSeconds: '...', // chuyển thành miligiay cho dong bo
+  milliSeconds: 4444444444, // chuyển thành miligiay cho dong bo
 }])
 const getListData = (value: Dayjs) => {
   let startDay = value.startOf('day').valueOf()
-  let data = mokeData.value.find(item => item.milliSeconds === startDay )
-  return {}
+  let data = mokeData.value.filter(item => item.milliSeconds === startDay )
+  return data
 }
 // end calendar
 // drawer
@@ -140,11 +136,6 @@ const onFinish = values => {
 
 </script>
 <!-- // milliSeconds -->
-<!-- // listTodo:
-[{
-   name: 'lịch',
-   type: 'loại',
-   progress: 'todo',
-}]
+<!-- // hiển thị ngày -->
 
- -->
+
