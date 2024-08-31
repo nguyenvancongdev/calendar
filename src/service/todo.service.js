@@ -1,16 +1,43 @@
-import { db } from '@firebaseConfig';
+import { db } from '@/firebaseConfig';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, setDoc, query, where, orderBy, limit, FieldPath   } from 'firebase/firestore';
 
-const getAllData = async () => {
-    const querySnapshot = await getDocs(collection(db, 'users'));
-    const mapData =  querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    return mapData
+export const getAllData = async () => {
+    
+    try {
+        const querySnapshot = await getDocs(collection(db, 'todo'));
+        const todoList = [];
+        querySnapshot.forEach((doc) => {
+          todoList.push({ id: doc.id, ...doc.data() });
+        });
+        return todoList;
+      } catch (error) {
+        console.error("Error fetching todo list:", error);
+        throw error;
+      }
 
 }
-const addData  = async (user) => {
-    await addDoc(collection(db, 'users'), {
-        name: user.name,
-      });
+export const getAllDataLimit = async (startTime, endTime) => {
+    
+    try {
+        const q = query(
+            collection(db, 'todo'),
+            where('milliSeconds', '>', startTime),
+            where('milliSeconds', '<', endTime),
+          );
+        const querySnapshot = await getDocs(q);
+        const todoList = [];
+        querySnapshot.forEach((doc) => {
+          todoList.push({ id: doc.id, ...doc.data() });
+        });
+        return todoList;
+      } catch (error) {
+        console.error("Error fetching todo list:", error);
+        throw error;
+      }
+
+}
+export const addData  = async (todo) => {
+    await addDoc(collection(db, 'todo'), todo);
 }
 // cập nhật data
 const updateData = async (user) => {
